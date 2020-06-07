@@ -1,0 +1,80 @@
+    1  sudo apt-get install gcc make perl
+    2  sudo apt-get install docker
+    3  sudo apt-get install docker-compose
+    4  sudo gedit /lib/systemd/system/docker.service 
+    5  sudo systemctl daemon-reload
+    6  sudo system-ctl restart docker
+    7  sudo systemctl restart docker
+    8  sudo swapoff -a
+    9  sudo gedit /etc/fstab 
+   10  reboot
+   11  free
+   12  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+   13  sudo apt-get install curl
+   14  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+   15  sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+   16  sudo apt-get install kubeadm
+   17  docker --version
+   18  docker-compose --version
+   19  kubeadm version
+   20  sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+   21  systemctl enable docker.service
+   22  sudo systemctl start docker
+   23  mkdir -p $HOME/.kube
+   24  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   25  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   26  sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+   27  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+   28  kubectl get nodes
+   29  kubectl get pods --all-namespaces
+   30  shutdown
+   31  history
+   32  netstat -lnt
+   33  sudo apt install net-tools
+   34  netstat -lnt
+   35  top
+   36  kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+   37  kubectl get pods --all-namespaces
+   38  apiVersion: rbac.authorization.k8s.io/v1
+   39  kind: ClusterRoleBinding
+   40  metadata:
+   41  roleRef:
+   42  subjects:
+   43  - kind: ServiceAccount
+   44  clrea
+   45  clear
+   46  kubectl apply -f usuario-dashboard.yaml 
+   47  kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+   48  kubectl proxy
+   49  top
+   50  kubectl get namespaces
+   51  kubectl create namespaces jenkins
+   52  kubectl create namespace jenkins
+   53  kubectl apply -f jenkins.yaml -n jenkins
+   54  kubectl api-resources | grep deployment
+   55  kubectl apply -f jenkins.yaml -n jenkins
+   56  ping maestro
+   57  ip a
+   58  kubectl get pods --all-namespaces
+   59  kubectl taint nodes --all node-role.kubernetes.io/master-
+   60  kubectl get pods --all-namespaces
+   61  kubectl logs jenkins-deployment-fdf876b89-9vvmf
+   62  kubectl logs jenkins-deployment-fdf876b89-9vvmf -n jenkins
+   63  kubectl get pods --all-namespaces
+   64  kubectl delete -f jenkins.yaml -n jenkins
+   65  kubectl get pods --all-namespaces
+   66  kubectl apply -f dashboard.yml 
+   67  kubectl delete -f dashboard.yml 
+   68  kubectl apply -f dashboard.yml -n kubernetes-dashboard
+   69  kubectl delete -f dashboard.yml 
+   70  kubectl delete -f dashboard.yml -n kubernetes-dashboard
+   71  kubectl apply -f dashboard.yml -n kubernetes-dashboard
+   72  kubectl delete -f dashboard.yml -n kubernetes-dashboard
+   73  kubectl delete -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+   74  kubectl get pods --all-namespaces
+   75  kubectl get services --all-namespaces
+   76  kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+   77  kubectl delete -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+   78  top
+   79  history
+   80  history>>history.txt

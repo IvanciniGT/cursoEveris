@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 2nginx
+  labels:
+    app: 2nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 2nginx
+  template:
+    metadata:
+      labels:
+        app: 2nginx
+    spec:
+#      containers:
+#      - name: nginx1
+#        image: nginx:1.14.2
+#        ports:
+#        - containerPort: 81
+#      - name: nginx1
+#        image: nginx:1.14.2
+#        ports:
+#        - containerPort: 82
+      containers:
+      - name: alpinegit
+        image: alpine
+        imagePullPolicy: IfNotPresent
+        command: ['sh','-c','echo Corriendo 1; sleep 1800']
+        volumeMounts:
+          - name: recursos
+            mountPath: /recursos
+      initContainers:
+      - name: clonador
+        image: ubuntu
+        imagePullPolicy: IfNotPresent
+        command: ['sh','-c','apt-get update -y && apt-get install git -y && git clone https://github.com/IvanciniGT/cursoEveris /recursos']
+        volumeMounts:
+          - name: recursos
+            mountPath: /recursos
+      volumes:
+        - name: recursos
+          emptyDir: {} 
+

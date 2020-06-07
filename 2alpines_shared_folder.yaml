@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 2alpines
+  labels:
+    app: 2ngi2alpinesnx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 2alpines
+  template:
+    metadata:
+      labels:
+        app: 2alpines
+    spec:
+      containers:
+      - name: alpine1
+        image: alpine
+        imagePullPolicy: IfNotPresent
+        command: ['sh','-c','echo Corriendo 1; sleep 1800']
+        volumeMounts:
+          - name: alpine-shared-folder
+            mountPath: /sharedc1
+        env:
+          - name: usuariodb
+            valueFrom:
+              configMapKeyRef:
+                name: miconfiguracion1
+                key: usuario
+          - name: ip
+            valueFrom:
+              configMapKeyRef:
+                name: miconfiguracion1
+                key: ip
+          - name: password
+            valueFrom:
+              secretKeyRef:
+                name: mariadbsecrets
+                key: password
+
+      - name: alpine2
+        image: alpine
+        imagePullPolicy: IfNotPresent
+        command: ['sh','-c','echo Corriendo 2; sleep 1800']
+        volumeMounts:
+          - name: alpine-shared-folder
+            mountPath: /sharedc2
+          - name: config
+            mountPath: /config
+          - name: secrets
+            mountPath: /secrets
+
+      volumes:
+        - name: alpine-shared-folder
+          hostPath: 
+            path: /carpeta
+            type: DirectoryOrCreate
+        - name: config
+          configMap:
+            name: miconfiguracion2
+        - name: secrets
+          secret:
+            secretName: missecretos1
