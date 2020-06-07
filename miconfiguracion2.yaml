@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: miconfiguracion2
+data:
+  usuario: ivan
+  ip: 10.0.0.1
+  basedatos.properties: |
+    mariadb.usuario=ivan
+    mariadb.password=ruina
+    mysql.puerto=3306
